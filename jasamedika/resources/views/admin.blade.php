@@ -1,0 +1,40 @@
+@extends('layouts.master')
+
+@section('content')
+
+<body class="bg-secondary">
+  <div class="bg-white container-sm col-6 border my-3 rounded px-5 py-3 pb-5">
+    <h1>Halo!!</h1>
+    <div>Selamat datang di halaman admin</div>
+    <div><a href="/logout" class="btn btn-sm btn-secondary">Logout >></a></div>
+    <div class="card mt-3">
+      <ul class="list-group list-group-flush">
+        @if(Auth::user()->role == 'admin')
+            <li class="list-group-item">Menu Admin</li> 
+        @endif
+        @if(Auth::user()->role == 'operator')
+            <li class="list-group-item">Menu Operator</li> 
+        @endif
+      </ul>
+    </div>
+
+  </div>
+</body>
+@endsection
+
+@section('scripts')
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        // btn refresh
+        $('.btn-refresh').click(function (e) {
+            e.preventDefault();
+            $('.preloader').fadeIn();
+            location.reload();
+        })
+
+    })
+
+</script>
+@endsection
