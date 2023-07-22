@@ -40,6 +40,7 @@ class PasienController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'id' => 'required',
             'nama' => 'required',
             'alamat' => 'required',
             'no_telepon' => 'required',
@@ -51,6 +52,7 @@ class PasienController extends Controller
         try {
             
             $data = new Pasien;
+            $data->id = $request->id;
             $data->nama = $request->nama;
             $data->alamat = $request->alamat;
             $data->no_telepon = $request->no_telepon;

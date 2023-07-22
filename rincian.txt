@@ -1,0 +1,2 @@
+nama : Azman Zakka Hadiyan
+sistem ini menggunakan framework laravel dan adminLte dengan menggunakan database mysql

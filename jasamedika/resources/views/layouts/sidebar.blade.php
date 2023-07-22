@@ -12,16 +12,20 @@
                 </span>
             </a>
             <ul class="treeview-menu">
-                <li
-                    class="{{ (Request::path() == 'kelurahan') ? 'active' : '' }} menu-sidebar">
-                    <a href="{{ url('kelurahan') }}"><i
-                            class="fa fa-circle-o"></i>Data Kelurahan</a>
-                </li>
-                <li
-                    class="{{ (Request::path() == 'pasien') ? 'active' : '' }} menu-sidebar">
-                    <a href="{{ url('pasien') }}"><i
-                            class="fa fa-circle-o"></i>Pasien</a>
-                </li>
+                
+                @if(Auth::user()->role == 'admin')
+                    <li
+                        class="{{ (Request::path() == 'kelurahan') ? 'active' : '' }} menu-sidebar">
+                        <a href="{{ url('/kelurahan') }}"><i
+                                class="fa fa-circle-o"></i>Data Kelurahan</a>
+                    </li>
+                @elseif(Auth::user()->role == 'operator')
+                    <li
+                        class="{{ (Request::path() == 'pasien') ? 'active' : '' }} menu-sidebar">
+                        <a href="{{ url('/pasien') }}"><i
+                                class="fa fa-circle-o"></i>Pasien</a>
+                    </li>
+                @endif
             </ul>
         </li>
     </ul>

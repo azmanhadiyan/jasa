@@ -92,7 +92,7 @@
                         <div class="col-sm-3">
                             <select name="jenis_kelamin" id="jenis_kelamin" class="form-control select2" required>
                                 <option value="">-Pilih Jenis Kelamin-</option>
-                                <option value="Laki-Laki" @if (old('jenis_kelamin') == "Laki-Laki") {{ 'selected' }} @endif>Laki-Laki</option>
+                                <option value="Laki Laki" @if (old('jenis_kelamin') == "Laki Laki") {{ 'selected' }} @endif>Laki Laki</option>
                                 <option value="Perempuan" @if (old('jenis_kelamin') == "Perempuan") {{ 'selected' }} @endif>Perempuan</option>
                             </select>
                         </div>
