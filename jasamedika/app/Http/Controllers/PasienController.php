@@ -39,16 +39,16 @@ class PasienController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'nama' => 'required',
+            'alamat' => 'required',
+            'no_telepon' => 'required',
+            'rt_rw' => 'required',
+            'kelurahan_id' => 'required',
+            'tanggal_lahir' => 'required',
+            'jenis_kelamin' => 'required',
+        ]);
         try {
-            $request->validate([
-                'nama' => 'required',
-                'alamat' => 'required',
-                'no_telepon' => 'required',
-                'rt_rw' => 'required',
-                'kelurahan_id' => 'required',
-                'tanggal_lahir' => 'required',
-                'jenis_kelamin' => 'required',
-            ]);
             
             $data = new Pasien;
             $data->nama = $request->nama;
@@ -79,25 +79,34 @@ class PasienController extends Controller
     {
         $title = "Edit Data Pasien";
         $pasien = Pasien::find($id);
-        return view('pasien.edit', compact('title','pasien'));
+        $kelurahan = Kelurahan::all();
+        return view('pasien.edit', compact('title','pasien','kelurahan'));
     }
 
     public function update(Request $request, $id)
     { 
+        $request->validate([
+            'nama' => 'required',
+            'alamat' => 'required',
+            'no_telepon' => 'required',
+            'rt_rw' => 'required',
+            'kelurahan_id' => 'required',
+            'tanggal_lahir' => 'required',
+            'jenis_kelamin' => 'required',
+        ]);
         try {
-            $request->validate([
-                'nama_kelurahan' => 'required',
-                'nama_kecamatan' => 'required',
-                'nama_kota' => 'required',
-            ]);
             $data = Pasien::find($id);
-            $data->nama_kelurahan = $request->nama_kelurahan;
-            $data->nama_kecamatan = $request->nama_kecamatan;
-            $data->nama_kota = $request->nama_kota;
+            $data->nama = $request->nama;
+            $data->alamat = $request->alamat;
+            $data->no_telepon = $request->no_telepon;
+            $data->rt_rw = $request->rt_rw;
+            $data->kelurahan_id = $request->kelurahan_id;
+            $data->tanggal_lahir = $request->tanggal_lahir;
+            $data->jenis_kelamin = $request->jenis_kelamin;
             $data->save();
 
             \Session::flash('sukses','Data berhasil diedit');
-            return redirect('kelurahan');
+            return redirect('pasien');
         } catch (\Exception $e) {
             \Session::flash('gagal',$e->getMessage());
             return redirect()->back();

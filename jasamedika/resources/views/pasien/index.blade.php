@@ -10,7 +10,7 @@
                 <p>
                     <button class="btn btn-sm btn-flat btn-warning btn-refresh"><i class="fa fa-refresh"></i>
                         Refresh</button>
-                    <a href="{{ url('pasien/create') }}"
+                    <a href="{{ url('/pasien/create') }}"
                         class="btn btn-sm btn-flat btn-primary pull-right"><i class="fa fa-plus"></i> Add Data Pasien</a>
                 </p>
             </div>
@@ -45,8 +45,8 @@
                     <table class="table table-hover myTable">
                         <thead>
                             <tr>
-                                <th>No</th>
                                 <th>Action</th>
+                                <th>No</th>
                                 <th>Nama Pasien</th>
                                 <th>Alamat</th>
                                 <th>No Telepon</th>
@@ -61,7 +61,6 @@
                         @php $i=1 @endphp
                         @foreach ($pasien as $item)
                         <tr>
-                            <td>{{ $item->id }}</td>
                             <td>
                                 <form action="{{ url('/pasien/'.$item->id) }}" method="POST">
                                     <a href="{{ url('/pasien/show',$item->id) }}"
@@ -74,6 +73,7 @@
                                             class="fa fa-trash"></i></button>
                                 </form>
                             </td>
+                            <td>{{ $item->id }}</td>
                             <td>{{ $item->nama }}</td>
                             <td>{{ $item->alamat }}</td>
                             <td>{{ $item->no_telepon }}</td>
